@@ -4,11 +4,12 @@ var myMap = L.map("map", {
   zoom: 5
 });
 
-// Add a tile layer 
+// create a tile layer 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+    attribution: "© Mapbox<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © OpenStreetMap<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+
   maxZoom: 18,
-  id: "mapbox.light",
+  id: "mapbox://styles/mapbox/light-v11",
   accessToken: api_key
 }).addTo(myMap);
 
