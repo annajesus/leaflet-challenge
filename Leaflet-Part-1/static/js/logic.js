@@ -16,22 +16,22 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 function getColor(magnitude){
   switch(true){
       case (magnitude <= 5):
-          return '#ea2c2c';
+          return '#ea2c2c'; 
           break;
       case (magnitude <= 4):
-          return '#ea822c';
+          return '#ea822c';  
           break;
       case (magnitude <= 3):
-          return '#ee9c00';
+          return '#ee9c00';  
           break;
       case (magnitude <= 2):
-          return '#eecc00';
+          return '#eecc00';  
           break;
       case (magnitude <= 1):
-          return '#d4ee00';
+          return '#d4ee00';  
           break;
       default:
-          return '#98ee00';
+          return '#98ee00';  
           break;
   }
 }
@@ -63,7 +63,11 @@ function getRadius(magnitude){
   }
 }  
 
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"
+// past 7 days 
+// var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"
+
+// past 30 days
+var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
 
 d3.json(queryUrl).then(function(data){
 
@@ -84,23 +88,23 @@ d3.json(queryUrl).then(function(data){
       }
   }).addTo(myMap);
   
-  // Create a legend
-  var legend = L.control({position: 'bottomright'});
-  legend.onAdd = function (map) {
-
-      var div = L.DomUtil.create('div', 'info legend'),
-          mag = [0, 1, 2, 3, 4, 5]
-      
-      div.innerHTML += "<h4>Magnitude Level</h4><hr>"
-      // loop through
-      for (var i = 0; i < mag.length; i++) {
-          div.innerHTML +=
-              '<i style="background:' + getColor(mag[i] + 1) + '"></i> ' +
-              mag[i] + (mag[i + 1] ? '&ndash;' + mag[i + 1] + '<br>' : '+');
-      }
-      return div;
-  };
-  legend.addTo(myMap);
+ // Create a legend
+ var legend = L.control({position: 'bottomright'});
+ legend.onAdd = function (map) {
+ 
+     var div = L.DomUtil.create('div', 'info legend'),
+         mag = [0, 1, 2, 3, 4, 5]
+    
+     div.innerHTML += "<h4>Magnitude Level</h4><hr>"
+     // loop through
+     for (var i = 0; i < mag.length; i++) {
+         div.innerHTML +=
+             '<i style="background:' + getColor(mag[i] + 1) + '"></i> ' +
+             mag[i] + (mag[i + 1] ? '&ndash;' + mag[i + 1] + '<br>' : '+');
+     }
+     return div;
+ };
+ legend.addTo(myMap);  
   
 
 });
